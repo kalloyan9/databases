@@ -1,0 +1,82 @@
+SET SCHEMA DB2MOVIE;
+
+SELECT NAME, ADDRESS
+FROM STUDIO
+WHERE NAME = 'MGM';
+
+SELECT NAME, BIRTHDATE
+FROM MOVIESTAR
+WHERE NAME = 'Sandra Bullock';
+
+SELECT *
+FROM STARSIN
+WHERE MOVIEYEAR = 1980
+  AND MOVIETITLE LIKE '%Love%';
+
+SELECT  *
+FROM MOVIEEXEC
+WHERE NETWORTH > 10000000;
+
+SELECT *
+FROM MOVIESTAR
+WHERE GENDER = 'M' OR ADDRESS LIKE '%Malibu%';
+
+
+--1. Напишете заявка, която извежда адресът на студио ‘MGM’
+--2. Напишете заявка, която извежда рождената дата на актрисата Sandra
+--Bullock
+--3. Напишете заявка, която извежда имената на всички актьори, които са
+--участвали във филм през 1980 в заглавието на които има думата ‘Love’
+--4. Напишете заявка, която извежда имената на всички продуценти на
+--филми на стойност над 10 000 000 долара
+--5. Напишете заявка, която извежда имената на всички актьори, които са
+--мъже или живеят в Malibu
+
+
+
+SET SCHEMA DB2SHIPS;
+
+SELECT CLASS, COUNTRY, NUMGUNS
+FROM CLASSES
+WHERE NUMGUNS < 10
+ORDER BY NUMGUNS, COUNTRY;
+-- first sort by numguns then by country (for equal numguns)
+-- ASC, DESC - ascending, descending order.
+
+SELECT NAME AS SHIPNAME, LAUNCHED
+FROM SHIPS
+WHERE LAUNCHED < 1918
+ORDER BY LAUNCHED DESC;
+--giving the column new name for our request with AS only for the copy we get
+
+SELECT *
+FROM OUTCOMES
+WHERE RESULT = 'sunk'
+ORDER BY BATTLE;
+
+SELECT *
+FROM SHIPS
+WHERE  CLASS = NAME
+ORDER BY NAME;
+
+SELECT NAME
+FROM SHIPS
+WHERE NAME LIKE 'R%';
+
+SELECT NAME
+FROM SHIPS
+WHERE NAME LIKE '% %'
+AND NAME NOT LIKE '% % %';
+
+--1. Напишете заявка, която извежда името на класа и страната за всички
+--класове с брой на оръдията по-малък от 10
+--2. Напишете заявка, която извежда имената на всички кораби, пуснати на
+--вода преди 1918. Задайте псевдоним на колоната shipName
+--3. Напишете заявка, която извежда имената на корабите потънали в битка
+--и имената на битките в които са потънали
+--4. Напишете заявка, която извежда имената на корабите с име съвпадащо
+--с името на техния клас
+--5. Напишете заявка, която извежда имената на всички кораби започващи с
+--буквата R
+--6. Напишете заявка, която извежда имената на всички кораби, чието име е
+--съставено от точно две думи
