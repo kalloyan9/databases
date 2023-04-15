@@ -1,0 +1,41 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class COMPANIES {
+   PHONE_NUMBER: varchar(10)
+   SITE: varchar(30)
+   EMAIL: varchar(20)
+   ADDRESS: varchar(100)
+   NAME: varchar(30)
+   EIK: integer
+}
+class CONTRACTS {
+   EIK_COMPANIES: integer
+   EGN_PEOPLE: integer
+   TYPE: integer
+   NUMBER: integer
+   WAGE: integer
+   MONEY: integer
+}
+class ESTATES {
+   ADDRESS: varchar(100)
+   GENDER: integer
+   EGN_PEOPLE: integer
+   UIN: varchar(5)
+}
+class PEOPLE {
+   EMAIL: varchar(20)
+   GENDER: integer
+   ADDRESS: varchar(100)
+   NAME: varchar(30)
+   PHONE_NUMBER: varchar(10)
+   EGN: integer
+}
+
+CONTRACTS  -[#595959,plain]-^  COMPANIES : "EIK_COMPANIES:EIK"
+CONTRACTS  -[#595959,plain]-^  PEOPLE    : "EGN_PEOPLE:EGN"
+ESTATES    -[#595959,plain]-^  PEOPLE    : "EGN_PEOPLE:EGN"
+@enduml
