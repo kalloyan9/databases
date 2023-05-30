@@ -1,0 +1,52 @@
+-- Създаване на изглед с readonly достъп
+SET SCHEMA FN5MI0700025;
+
+CREATE VIEW ReadOnlyView AS
+SELECT * FROM COMPANIES;
+
+-- Създаване на изглед с updatable достъп
+
+CREATE VIEW UpdatableView AS
+SELECT * FROM PEOPLE;
+
+-- Създаване на изглед с check option
+
+CREATE VIEW CheckOptionView AS
+SELECT * FROM ESTATES
+WHERE TYPE  = 1
+WITH CHECK OPTION;
+
+-- Тестове на изгледите
+
+-- INSERT операции
+
+-- Вмъкване на нов запис в таблицата COMPANIES чрез изгледа ReadOnlyView
+INSERT INTO ReadOnlyView (EIK, PHONE_NUMBER, SITE, EMAIL, ADDRESS, NAME)
+VALUES (1234567890, '1234567890', 'example.com', 'test@example.com', 'Company Address', 'Company Name');
+
+-- Вмъкване на нов запис в таблицата PEOPLE чрез изгледа UpdatableView
+INSERT INTO UpdatableView (EGN, EMAIL, GENDER, ADDRESS, NAME, PHONE_NUMBER)
+VALUES (1234567890, 'test@example.com', 0, 'Person Address', 'Person Name', '1234567890');
+
+-- UPDATE операции
+
+-- Промяна на запис в таблицата COMPANIES чрез изгледа ReadOnlyView
+UPDATE ReadOnlyView
+SET NAME = 'New Company Name'
+WHERE EIK = 1234567890;
+
+-- Промяна на запис в таблицата PEOPLE чрез изгледа UpdatableView
+UPDATE UpdatableView
+SET NAME = 'New Person Name'
+WHERE EGN = 1234567890;
+
+-- SELECT операции
+
+-- Извличане на данни от изгледа ReadOnlyView
+SELECT * FROM ReadOnlyView;
+
+-- Извличане на данни от изгледа UpdatableView
+SELECT * FROM UpdatableView;
+
+-- Извличане на данни от изгледа CheckOptionView
+SELECT * FROM CheckOptionView;

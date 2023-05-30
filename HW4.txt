@@ -19,7 +19,7 @@ CREATE TABLE PEOPLE (
 CREATE TABLE ESTATES (
     UIN VARCHAR(5) NOT NULL PRIMARY KEY,
     ADDRESS VARCHAR(100) NOT NULL,
-    GENDER INTEGER CHECK ( GENDER = 0 OR GENDER = 1 ),
+    TYPE INTEGER CHECK ( TYPE = 0 OR TYPE = 1 ),
     EGN_PEOPLE INTEGER NOT NULL REFERENCES PEOPLE(EGN)
 );
 
@@ -31,3 +31,12 @@ CREATE TABLE CONTRACTS (
     WAGE INTEGER NOT NULL CHECK ( WAGE >= 0 ),
     MONEY INTEGER NOT NULL CHECK ( MONEY >= 0 )
 );
+
+
+Създайте 3 изгледа:
+
+един readonly
+един updatable
+един с check option
+тествайте изгледите, като използвате INSERT, UPDATE или SELECT
+Качете SQL файла, като решение на задачата.
